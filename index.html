@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Kata Rendering</title>
+    <style>
+     body {
+         margin: 0;
+         padding: 0;
+     }
+     .viewport {
+         background-color: #fcfcfc;
+         border: #888 3px solid;
+         box-sizing: border-box;
+         margin: 10px 0 0 10px;
+         x-height: 480px;
+         x-width: 640px;
+     }
+    </style>
+    <script>
+        function setTargetFps(targetFps) {
+            const it = document.querySelector('#targetfps');
+            it.value = targetFps;
+            it.dispatchEvent(new Event('change'));
+        }
+    </script>
+</head>
+<body>
+    <div style="display: flex; flex-direction: row;">
+        <div>
+            <canvas width="640" height="480" class="viewport main"></canvas>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <div>
+                <canvas width="80" height="60" class="viewport internal"></canvas>
+                <!--<canvas width="320" height="240" class="viewport internal"></canvas>-->
+            </div>
+            <span>fps:<input id="fps" type="number" readonly></span>
+            <span>mx: <input id="mx" type="number" readonly></span>
+            <span>my: <input id="my" type="number" readonly></span>
+            <span>render: <input id="render" type="number" readonly>ms</span>
+            <span>upscale: <input id="upscale" type="number" readonly>ms</span>
+            <span>predicted: <input id="predicted" type="number" readonly>ms</span>
+            <span><button id="start" disabled>start</button><button id="stop">stop</button></span>
+            <span>
+                targetfps:<input id="targetfps" type="number" value="16">
+                <span>budget: <input id="budget" type="number" maxlength="10" readonly>ms</span>
+                <button onclick="setTargetFps(2)">2</button>
+                <button onclick="setTargetFps(6)">6</button>
+                <button onclick="setTargetFps(12)">12</button>
+                <button onclick="setTargetFps(16)">16</button>
+                <button onclick="setTargetFps(24)">24</button>
+                <button onclick="setTargetFps(30)">30</button>
+                <button onclick="setTargetFps(40)">40</button>
+                <button onclick="setTargetFps(60)">60</button>
+                <button onclick="setTargetFps(120)">120</button>
+                <button onclick="setTargetFps(144)">144</button>
+            </span>
+        </div>
+    </div>
+    <script src="src/main.js" type="module"></script>
+</body>
+</html>
